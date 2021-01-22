@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const API_URL = "//localhost:5000/todos";
+const API_URL = "https://vaadin-todo-api.herokuapp.com/todos";
 export default {
   name: 'TodoView',
 
