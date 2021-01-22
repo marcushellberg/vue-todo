@@ -13,21 +13,27 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
+interface Todo {
+  id?: number;
+  task: string;
+  done: boolean;
+}
+
 const API_URL = "https://vaadin-todo-api.herokuapp.com/todos";
 export default {
   name: 'TodoView',
 
   data() {
     return {
-      todos: [],
+      todos: [] as Todo[],
       task:"",
       error: ""
     }
   },
 
   methods: {
-    async addTodo(e) {
+    async addTodo(e: Event) {
       e.preventDefault();
       this.error = ""
       if (!this.task) {

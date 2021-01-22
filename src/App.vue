@@ -1,16 +1,18 @@
 <template>
-  <TodoView/>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
-<script>
-import TodoView from './components/TodoView.vue'
+<script lang="ts">
+import { Options, Vue } from 'vue-class-component';
+import TodoView from './components/TodoView.vue';
 
-export default {
-  name: 'App',
+@Options({
   components: {
-    TodoView
-  }
-}
+    TodoView,
+  },
+})
+export default class App extends Vue {}
 </script>
 
 <style>
