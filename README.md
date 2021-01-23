@@ -4,6 +4,14 @@ This is an example app for comparing popular frontend frameworks. You can find t
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/marcushellberg/vue-todo)
 
+## Requirements
+
+- Node
+
+## How to run
+
+`npm run start`
+
 ## Alternate implementations
 
 - [React todo](https://github.com/marcushellberg/react-todo)

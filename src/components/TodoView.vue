@@ -14,6 +14,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
+
 interface Todo {
   id?: number;
   task: string;
@@ -21,7 +23,7 @@ interface Todo {
 }
 
 const API_URL = "https://vaadin-todo-api.herokuapp.com/todos";
-export default {
+export default defineComponent({
   name: 'TodoView',
 
   data() {
@@ -45,7 +47,7 @@ export default {
      this.task = ""
      },
 
-    async deleteTodo(id){
+    async deleteTodo(id: number){
       await fetch(`${API_URL}/${id}`, { method: "DELETE" });
       this.todos = this.todos.filter((t) => t.id !== id);
     },
@@ -55,5 +57,5 @@ export default {
     const todoJson = await fetch(API_URL);
     this.todos = await todoJson.json();
   }
-}
+})
 </script>
