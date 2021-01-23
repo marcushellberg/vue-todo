@@ -1,6 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <TodoView/>
 </template>
 
 <script lang="ts">
@@ -10,7 +9,7 @@ import TodoView from './components/TodoView.vue';
 @Options({
   components: {
     TodoView,
-  },
+  }
 })
 export default class App extends Vue {}
 </script>
