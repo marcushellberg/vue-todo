@@ -1,6 +1,6 @@
 <template>
   <h1>Todo</h1>
-  <form @submit="addTodo">
+  <form @submit.prevent="addTodo">
     <input type="text" v-model="task" />
     <button type="submit">Add</button>
   </form>
@@ -35,17 +35,16 @@ export default defineComponent({
   },
 
   methods: {
-    async addTodo(e: Event) {
-      e.preventDefault();
+    async addTodo() {
       this.error = ""
       if (!this.task) {
-       this.error ="Task cannot be empty";
-       return;
-     }
-     const res = await fetch(API_URL, { method: "POST", body: this.task });
-     this.todos.push(await res.json());
-     this.task = ""
-     },
+        this.error ="Task cannot be empty";
+        return;
+      }
+      const res = await fetch(API_URL, { method: "POST", body: this.task });
+      this.todos.push(await res.json());
+      this.task = ""
+    },
 
     async deleteTodo(id: number){
       await fetch(`${API_URL}/${id}`, { method: "DELETE" });
