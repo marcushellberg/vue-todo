@@ -10,14 +10,30 @@ This is an example app for comparing popular frontend frameworks. You can find t
 
 ## How to run
 
-`npm run start`
+```sh
+npm install
+npm run dev
+```
 
 ## Alternate implementations
 
 - [React todo](https://github.com/marcushellberg/react-todo)
 - [Vue todo](https://github.com/marcushellberg/vue-todo)
 - [Angular todo](https://github.com/marcushellberg/angular-todo)
-- [Vue todo](https://github.com/marcushellberg/vue-todo)
 - [Vaadin Fusion todo](https://github.com/marcushellberg/vaadin-typescript-todo)
 - [Vaadin Flow Todo](https://github.com/marcushellberg/vaadin-java-todo)
 - [Todo REST API](https://github.com/marcushellberg/todo-api)
+
+---
+
+# Vue 3 + Typescript + Vite
+
+This app is built using the Vue 3 + Typescript + Vite template. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+
+## Recommended IDE Setup
+
+- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+
+## Type Support For `.vue` Imports in TS
+
+Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.

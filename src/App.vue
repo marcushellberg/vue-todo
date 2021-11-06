@@ -1,18 +1,10 @@
+<script setup lang="ts">
+import TodoView from './components/TodoView.vue'
+</script>
+
 <template>
   <TodoView/>
 </template>
-
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import TodoView from './components/TodoView.vue';
-
-@Options({
-  components: {
-    TodoView,
-  }
-})
-export default class App extends Vue {}
-</script>
 
 <style>
 #app {
