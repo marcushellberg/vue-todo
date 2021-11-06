@@ -1,3 +1,42 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface Todo {
+  id?: number;
+  task: string;
+  done: boolean;
+}
+
+const API_URL = "https://vaadin-todo-api.herokuapp.com/todos";
+
+const task = ref("");
+const error = ref("");
+const todos = ref([] as Todo[]);
+
+const fetchTodos = async () => {
+  const todosResponse = await fetch(API_URL);
+  todos.value = await todosResponse.json();
+}
+
+fetchTodos();
+
+const addTodo = async () => {
+  error.value = "";
+  if (!task.value) {
+    error.value ="Task cannot be empty";
+    return;
+  }
+  const res = await fetch(API_URL, { method: "POST", body: task.value });
+  todos.value.push(await res.json());
+  task.value = "";
+}
+
+const deleteTodo = async (id: number) => {
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+  todos.value = todos.value.filter((t) => t.id !== id);
+}
+</script>
+
 <template>
   <h1>Todo</h1>
   <form @submit.prevent="addTodo">
@@ -13,48 +52,8 @@
   </ul>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-interface Todo {
-  id?: number;
-  task: string;
-  done: boolean;
+<style scoped>
+.errors {
+  color: red;
 }
-
-const API_URL = "https://vaadin-todo-api.herokuapp.com/todos";
-export default defineComponent({
-  name: 'TodoView',
-
-  data() {
-    return {
-      todos: [] as Todo[],
-      task:"",
-      error: ""
-    }
-  },
-
-  methods: {
-    async addTodo() {
-      this.error = ""
-      if (!this.task) {
-        this.error ="Task cannot be empty";
-        return;
-      }
-      const res = await fetch(API_URL, { method: "POST", body: this.task });
-      this.todos.push(await res.json());
-      this.task = ""
-    },
-
-    async deleteTodo(id: number){
-      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-      this.todos = this.todos.filter((t) => t.id !== id);
-    },
-  },
-
-  async created() {
-    const todoJson = await fetch(API_URL);
-    this.todos = await todoJson.json();
-  }
-})
-</script>
+</style>
